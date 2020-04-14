@@ -41,6 +41,7 @@ exports.pool = async (req, res) => {
         if (!course) {
             return res.Ok(false);
         }
+         course = course._doc || course;
         course.date = new Date();
         course.uid = req.query.uid;
         await course.save();
