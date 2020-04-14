@@ -10,8 +10,7 @@ exports.validate = async (req, res) => {
         });
         if (!course) {
             return res.Ok(false);
-        }
-        return res.Ok(true);
+        }       
         course = course._doc || course;
         if (course.uid == req.query.uid) {
             return res.Ok(true);
@@ -42,8 +41,7 @@ exports.pool = async (req, res) => {
         if (!course) {
             return res.Ok(false);
         }
-         course = course._doc || course;
-        course.date = new Date();
+        course.date = moment();
         course.uid = req.query.uid;
         await course.save();
         return res.Ok(course);
