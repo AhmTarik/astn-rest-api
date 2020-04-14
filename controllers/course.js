@@ -4,13 +4,14 @@ const { courseEntity } = require('../models/db/index');
 
 
 exports.validate = async (req, res) => {
-    try {
+    try {        
         let course = await courseEntity.findOne({
             token: req.query.token
         });
         if (!course) {
             return res.Ok(false);
         }
+        return res.Ok(true);
         course = course._doc || course;
         if (course.uid == req.query.uid) {
             return res.Ok(true);
