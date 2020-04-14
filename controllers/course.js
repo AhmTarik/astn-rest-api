@@ -18,6 +18,7 @@ exports.validate = async (req, res) => {
             let current = moment();
             let tmpDate = moment(course.date).add(90, 'seconds');
             if (current.isAfter(tmpDate)) {
+                return res.Ok(true);
             }
             return res.Ok(false);
         }
